@@ -1,6 +1,5 @@
 {
 	"name": "ls_postgresql",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "PostgreSqlV2",
@@ -9,9 +8,17 @@
 			"port": 5432,
 			"database": "neondb",
 			"username": "neondb_owner",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_azurekeyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "postgresql-pwd"
+			},
 			"sslMode": 2,
-			"authenticationType": "Basic",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDBCMTU1MDk0LTNCRUMtNDcxMi04OEVDLUM4ODFBQ0M1N0MwN19jYjUwOWExMi0xNTllLTRkYTAtOTkwNy1kYjdiZDFkMjVmZjYiDQp9"
+			"authenticationType": "Basic"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
